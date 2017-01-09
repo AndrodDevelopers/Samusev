@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">DatabaseProgramm</string>
+    <string name="add_btn">Добавить</string>
+
+    <string name="t_name">Имя</string>
+    <string name="t_surname">Фамилия</string>
+    <string name="t_address">Адрес</string>
+    <string name="t_email">E-mail</string>
+    <string name="t_phone">телефон</string>
+
+    <string name="input_error">Неверный ввод</string>
+    <string name="input_error_duo">ввод разрешен только одного слова</string>
+    <string name="input_error_none_email">Не является Email</string>
+    <string name="input_error_none_phone">Не является номером телефона</string>
+    <string name="error_add">Ошибка в добавлении пользователя</string>
+
+</resources>

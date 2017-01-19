@@ -3,6 +3,7 @@ package com.example.maks.database.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
@@ -57,7 +58,10 @@ public class MainActivity extends AppCompatActivity{
                             int position,
                             long id
                     ) {
+                        Log.e("MyTAG id iz pozition",String.valueOf(myAdapter.getItemId(position)));
+
                         user=dbUtils.getUserIdFull(myAdapter.getItemId(position));
+                        Log.e("MyTAG id",String.valueOf(user.getId()));
                         Intent intent = new Intent(MainActivity.this, InfoActivity.class)
                                 .putExtra(InfoActivity.ID_KEY,user.getId())
                                 .putExtra(InfoActivity.NAME_KEY,user.getName())
@@ -65,6 +69,7 @@ public class MainActivity extends AppCompatActivity{
                                 .putExtra(InfoActivity.ADDRESS_KEY,user.getAddress())
                                 .putExtra(InfoActivity.EMAIL_KEY,user.getEmail())
                                 .putExtra(InfoActivity.PHONE_KEY,user.getPhone());
+
                         startActivity(intent);//*/
                     }
                 }
@@ -85,8 +90,8 @@ public class MainActivity extends AppCompatActivity{
             AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
             // удаляем Map из коллекции, используя позицию пункта в списке
             dbUtils.deleteUser(myAdapter.getItemId(acmi.position));
-            listView.setAdapter(new MyAdapter(this,App.getInstance().getDb()));
-            // уведомляем, что данные изменились
+            myAdapter=new MyAdapter(this, App.getInstance().getDb());
+            listView.setAdapter(myAdapter);
             myAdapter.notifyDataSetChanged();
 
             return true;
@@ -100,7 +105,8 @@ public class MainActivity extends AppCompatActivity{
             case REQUEST_CODE_ADD_USER:
                 if (resultCode == RESULT_OK) {
                     Toast.makeText(this, data.getStringExtra(AddActivity.ADD_NAME_KEY), Toast.LENGTH_LONG).show();
-                    listView.setAdapter(new MyAdapter(this,App.getInstance().getDb()));
+                    myAdapter=new MyAdapter(this, App.getInstance().getDb());
+                    listView.setAdapter(myAdapter);
                     myAdapter.notifyDataSetChanged();
                 } else {
                     Toast.makeText(this, R.string.error_add, Toast.LENGTH_LONG).show();
@@ -114,7 +120,8 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onResume() {
         super.onResume();
-        listView.setAdapter(new MyAdapter(this,App.getInstance().getDb()));
+        myAdapter=new MyAdapter(this, App.getInstance().getDb());
+        listView.setAdapter(myAdapter);
         myAdapter.notifyDataSetChanged();
 
     }

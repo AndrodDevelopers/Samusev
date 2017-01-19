@@ -1,9 +1,8 @@
 package com.example.maks.database.activities;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,9 +12,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.maks.database.App;
-import com.example.maks.database.database.DBUtils;
-import com.example.maks.database.adapters.MyAdapter;
 import com.example.maks.database.R;
+import com.example.maks.database.adapters.MyAdapter;
+import com.example.maks.database.database.DBUtils;
 import com.example.maks.database.models.User;
 
 
@@ -58,10 +57,9 @@ public class MainActivity extends AppCompatActivity{
                             int position,
                             long id
                     ) {
-                        Log.e("MyTAG id iz pozition",String.valueOf(myAdapter.getItemId(position)));
+                      ;
 
                         user=dbUtils.getUserIdFull(myAdapter.getItemId(position));
-                        Log.e("MyTAG id",String.valueOf(user.getId()));
                         Intent intent = new Intent(MainActivity.this, InfoActivity.class)
                                 .putExtra(InfoActivity.ID_KEY,user.getId())
                                 .putExtra(InfoActivity.NAME_KEY,user.getName())
